@@ -36,3 +36,6 @@ Simply do:
 make
 docker-compose up -d
 ```
+
+# Notes
+For your plex, I highly recommend you to install [Sub-Zero](https://github.com/pannal/Sub-Zero.bundle) to get better subtitles.
