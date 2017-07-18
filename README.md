@@ -16,7 +16,7 @@ You'll also have to configure deluge to:
 - Move completed downloads to /downloads/done
 - Autoadd .torrent files from /autoadd
 
-I'm not using the rpc com between couchpotato and deluge as I add a lot of problems with it.
+I'm not using the rpc com between couchpotato and deluge as I had a lot of problems with it.
 Instead I simply put the torrents in that /autoadd folder and they are automatically downloaded by deluge.
 Plex will serve the downloaded files which are in /downloads/done. 
 
