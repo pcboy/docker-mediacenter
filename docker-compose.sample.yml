@@ -14,7 +14,6 @@ services:
       - PUID=$UID
     depends_on:
       - deluge
-      - jackett
 
   deluge:
     image: linuxserver/deluge
@@ -25,17 +24,6 @@ services:
       - ./deluge/downloads:/downloads
       - ./deluge/config:/config
       - ./deluge/autoadd:/autoadd
-    environment:
-      - PGID=$GID
-      - PUID=$UID
-
-  jackett:
-    image: linuxserver/jackett
-    ports:
-      - "9117:9117"
-    volumes:
-      - ./jackett/config:/config
-      - ./jackett/downloads:/downloads
     environment:
       - PGID=$GID
       - PUID=$UID
