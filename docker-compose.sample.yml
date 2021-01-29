@@ -31,8 +31,6 @@ services:
   plex:
     image: plexinc/pms-docker:latest
     restart: unless-stopped
-    ports:
-      - "32400:32400"
     environment:
       - PLEX_UID=$UID
       - PLEX_GID=$GID
@@ -41,3 +39,11 @@ services:
       - ./plex/config:/config
       - ./plex/transcode:/transcode
       - ./deluge/downloads/done:/data
+
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    network_mode: host
+    volumes:
+      - ./jellyfin/config:/config
+      - ./jellyfin/cache:/cache
+      - ./deluge/downloads/done:/media/movies

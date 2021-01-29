@@ -1,5 +1,6 @@
 <img alt="Couchpotato" src="assets/couchpotato.png" height="80">
 <img alt="Deluge" src="assets/deluge.png" height="80"> <img alt="Plex" src="assets/plex.png" height="80">
+<img alt="Deluge" src="assets/jellyfin.png" height="80">
 
 # Docker-mediacenter
 
@@ -7,7 +8,8 @@ A very simple way to setup a media center at home. :)
 Includes:
 - Couchpotato to find movies you want to download easily
 - Deluge to download the torrents
-- Finally Plex for watching the movies on your PS4 (or wherever you want)!
+- Plex for watching the movies on your Playstation/Android TV (or wherever you want)!
+- Jellyfin, another Plex-like media server, open source. 
 
 You'll have to configure deluge to:
 - Download in /downloads
@@ -24,6 +26,7 @@ In a near future  I'll try to automate this configuration.
 - Couchpotato: http://localhost:5050
 - Deluge: http://localhost:8112
 - Plex: http://localhost:32400
+- Jellyfin: http://localhost:8096/
 
 # Installation
 
