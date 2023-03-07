@@ -7,7 +7,7 @@ services:
       - "5050:5050"
     volumes:
       - ./couchpotato/config:/config
-      - ./deluge/autoadd:/downloads
+      - ./transmission/autoadd:/downloads
       - ./couchpotato/movies:/movies
     environment:
       - PGID=$GID
