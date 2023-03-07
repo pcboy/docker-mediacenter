@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   couchpotato:
@@ -13,21 +13,37 @@ services:
       - PGID=$GID
       - PUID=$UID
     depends_on:
-      - deluge
+      - transmission
 
-  deluge:
-    image: linuxserver/deluge
-    ports:
-      - "58846:58846"
-      - "8112:8112"
-    volumes:
-      - ./deluge/downloads:/downloads
-      - ./deluge/config:/config
-      - ./deluge/autoadd:/autoadd
+  flood:
+    image: jesec/flood
     environment:
       - PGID=$GID
       - PUID=$UID
+      - TZ=Europe/London
+    volumes:
+      - ./flood/config:$HOME/.local/share/flood
+    ports:
+      - 4200:3000
 
+  transmission:
+    image: lscr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PGID=$GID
+      - PUID=$UID
+      - TZ=Europe/London
+      - TRANSMISSION_RPC_USERNAME=RPC_USERNAME # change it
+      - TRANSMISSION_RPC_PASSWORD=RPC_PASSWORD
+    volumes:
+      - ./transmission/downloads:/downloads
+      - ./transmission/config:/config
+      - ./transmission/autoadd:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
   plex:
     image: plexinc/pms-docker:latest
     restart: unless-stopped
@@ -38,7 +54,7 @@ services:
     volumes:
       - ./plex/config:/config
       - ./plex/transcode:/transcode
-      - ./deluge/downloads/done:/data
+      - ./transmission/downloads/done:/data
 
   jellyfin:
     image: jellyfin/jellyfin:latest
@@ -46,4 +62,4 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
-      - ./deluge/downloads/done:/media/movies
+      - ./transmission/downloads/done:/media/movies
